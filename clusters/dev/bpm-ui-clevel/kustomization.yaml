@@ -2,8 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: bpm-dev
 resources:
-  - deployment.yaml
-  - service.yaml
+  - ../../base/bpm-ui-clevel
 images:
   - name: cr.yandex/bpm-registry/bpm-ui-clevel
     newTag: placeholder
+configMapGenerator:
+  - name: bpm-ui-clevel-config
+    literals:
+      - API_URL=http://bpm-gateway:8080

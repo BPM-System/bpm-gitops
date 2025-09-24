@@ -1,11 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: bpm-dev
+namespace: bpm-prod
 resources:
   - ../../base/bpm-ui-analyst
 images:
   - name: cr.yandex/bpm-registry/bpm-ui-analyst
-    newTag: placeholder
+    newTag: prod
 configMapGenerator:
   - name: bpm-ui-analyst-config
     literals:

@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: bpm-dev
 resources:
-  - ../../base/bpm-integration-workers
+  - ../../base/bpm-ai-service
 images:
-  - name: cr.yandex/bpm-registry/bpm-integration-workers
+  - name: cr.yandex/bpm-registry/bpm-ai-service
     newTag: placeholder

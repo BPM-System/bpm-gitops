@@ -1,8 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: bpm-dev
+namespace: bpm-prod
 resources:
   - ../../base/bpm-model-repo
 images:
   - name: cr.yandex/bpm-registry/bpm-model-repo
-    newTag: placeholder
+    newTag: prod

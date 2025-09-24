@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bpm-platform
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            namespace: bpm-dev
+          - env: stage
+            namespace: bpm-stage
+          - env: prod
+            namespace: bpm-prod
+  template:
+    metadata:
+      name: bpm-{{env}}
+    spec:
+      project: bpm
+      source:
+        repoURL: https://github.com/BPM-System/bpm-gitops.git
+        targetRevision: main
+        path: clusters/{{env}}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
