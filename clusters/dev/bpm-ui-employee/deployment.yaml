@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bpm-ui-employee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bpm-ui-employee
+  template:
+    metadata:
+      labels:
+        app: bpm-ui-employee
+    spec:
+      containers:
+        - name: bpm-ui-employee
+          image: cr.yandex/bpm-registry/bpm-ui-employee:placeholder
+          ports:
+            - containerPort: 4173
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 4173
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 4173
+            initialDelaySeconds: 15
+            periodSeconds: 20

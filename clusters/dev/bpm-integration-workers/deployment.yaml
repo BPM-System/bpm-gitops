@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bpm-integration-workers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bpm-integration-worker
+  template:
+    metadata:
+      labels:
+        app: bpm-integration-worker
+    spec:
+      containers:
+        - name: bpm-integration-worker
+          image: cr.yandex/bpm-registry/bpm-integration-workers:placeholder
+          args: ["/app/worker"]
+          env:
+            - name: QUEUE
+              value: external-tasks
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi

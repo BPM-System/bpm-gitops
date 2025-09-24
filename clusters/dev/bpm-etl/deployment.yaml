@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bpm-etl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bpm-etl
+  template:
+    metadata:
+      labels:
+        app: bpm-etl
+    spec:
+      containers:
+        - name: bpm-etl
+          image: cr.yandex/bpm-registry/bpm-etl:placeholder
+          args: ["airflow", "scheduler"]
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi

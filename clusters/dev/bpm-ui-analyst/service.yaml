@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bpm-ui-analyst
+spec:
+  type: ClusterIP
+  selector:
+    app: bpm-ui-analyst
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4173

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bpm-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bpm-gateway
+  template:
+    metadata:
+      labels:
+        app: bpm-gateway
+    spec:
+      containers:
+        - name: bpm-gateway
+          image: cr.yandex/bpm-registry/bpm-gateway:placeholder
+          ports:
+            - containerPort: 8080
+          env:
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: bpm-gateway-config
+                  key: LOG_LEVEL
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
