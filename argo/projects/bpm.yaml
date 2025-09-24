@@ -6,7 +6,7 @@ metadata:
 spec:
   description: BPM-system environments
   sourceRepos:
-    - https://github.com/trustmycode/bpm-gitops.git
+    - https://github.com/BPM-System/bpm-gitops.git
   destinations:
     - namespace: '*'
       server: https://kubernetes.default.svc

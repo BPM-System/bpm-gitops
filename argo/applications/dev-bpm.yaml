@@ -8,7 +8,7 @@ metadata:
 spec:
   project: bpm
   source:
-    repoURL: https://github.com/trustmycode/bpm-gitops.git
+    repoURL: https://github.com/BPM-System/bpm-gitops.git
     targetRevision: main
     path: clusters/dev
   destination:
