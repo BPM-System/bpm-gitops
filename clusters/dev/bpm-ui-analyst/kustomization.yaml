@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: bpm-dev
 resources:
-  - ../../base/bpm-ui-analyst
+- ../../base/bpm-ui-analyst
 images:
-  - name: cr.yandex/bpm-registry/bpm-ui-analyst
-    newTag: placeholder
+- name: cr.yandex/bpm-registry/bpm-ui-analyst
+  newTag: 28-11642287ae89b3ce2ab7a28f1d5111d74b9360a8
 configMapGenerator:
-  - name: bpm-ui-analyst-config
-    literals:
-      - API_URL=http://bpm-gateway:8080
+- name: bpm-ui-analyst-config
+  literals:
+  - API_URL=http://bpm-gateway:8080
